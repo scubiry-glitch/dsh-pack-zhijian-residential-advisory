@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "skills": [
+    {"id": "residential-subject-intake", "distributionPath": "skills/residential-subject-intake/SKILL.md", "runtimePath": "knowledge/skills/residential-subject-intake/SKILL.md", "registrationStatus": "target_platform_registration_required"},
+    {"id": "residential-market-value-reference", "distributionPath": "skills/residential-market-value-reference/SKILL.md", "runtimePath": "knowledge/skills/residential-market-value-reference/SKILL.md", "registrationStatus": "target_platform_registration_required"},
+    {"id": "residential-rent-reference", "distributionPath": "skills/residential-rent-reference/SKILL.md", "runtimePath": "knowledge/skills/residential-rent-reference/SKILL.md", "registrationStatus": "target_platform_registration_required"},
+    {"id": "residential-hold-return-acquisition", "distributionPath": "skills/residential-hold-return-acquisition/SKILL.md", "runtimePath": "knowledge/skills/residential-hold-return-acquisition/SKILL.md", "registrationStatus": "target_platform_registration_required"},
+    {"id": "residential-advisory-report-quality", "distributionPath": "skills/residential-advisory-report-quality/SKILL.md", "runtimePath": "knowledge/skills/residential-advisory-report-quality/SKILL.md", "registrationStatus": "target_platform_registration_required"}
+  ],
+  "notes": "包内 skills 为分发副本；目标平台导入后必须挂载并登记 runtimePath。"
+}

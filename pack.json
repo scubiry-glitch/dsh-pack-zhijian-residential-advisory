@@ -1,0 +1,14 @@
+{
+  "id": "zhijian-residential-advisory",
+  "name": "智见住宅估值咨询基础 Agent 领域包",
+  "description": "面向单套住宅市场价值参考、住宅租金参考、持有收益与收购价测算的咨询型领域包。",
+  "version": "0.2.0",
+  "schemaVersion": 2,
+  "deploymentStatus": "candidate_for_zhijian_deployment",
+  "caliberDeclarations": {
+    "market_data": "平台已发布城市交易与租赁数据口径",
+    "model_inference": "平台已发布模型版本及其推理快照口径",
+    "deterministic_calculation": "平台确定性测算代码与结构化计算快照口径",
+    "reporting": "估值咨询成果口径，不构成资产评估报告或房地产估价报告"
+  }
+}

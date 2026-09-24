@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "provider-envelope.schema.json",
+  "title": "Zhijian House Value Provider Envelope",
+  "type": "object",
+  "required": ["ok", "capability", "provider", "provenance", "warnings", "error", "truncated"],
+  "properties": {
+    "ok": {"type": "boolean"},
+    "capability": {"type": "string"},
+    "provider": {
+      "type": "object",
+      "required": ["id", "version"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "operation": {"type": ["string", "null"]},
+    "provenance": {
+      "type": "object",
+      "required": ["caliber", "unit"],
+      "properties": {"caliber": {"type": "string"}, "unit": {"type": "string"}},
+      "additionalProperties": true
+    },
+    "warnings": {"type": "array"},
+    "error": {"type": ["object", "string", "null"]},
+    "truncated": {"type": "boolean"},
+    "data": {"type": ["object", "array", "null"]}
+  },
+  "additionalProperties": true
+}

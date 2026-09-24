@@ -1,0 +1,354 @@
+{
+  "id": "hold-return-team",
+  "version": "0.2.0",
+  "schemaVersion": 2,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "string",
+        "description": "标的与数据上下文"
+      }
+    }
+  },
+  "slots": [
+    {
+      "id": "bk-hva-005",
+      "capabilities": [
+        "residential.hold-return-analysis"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    {
+      "id": "bk-hva-001",
+      "capabilities": [
+        "residential.market-value-reference"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    {
+      "id": "bk-hva-003",
+      "capabilities": [
+        "residential.rent-reference"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    {
+      "id": "bk-hva-006",
+      "capabilities": [
+        "residential.evidence-audit"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    {
+      "id": "bk-hva-007",
+      "capabilities": [
+        "residential.report-quality-review"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t0",
+      "role": "bk-hva-005",
+      "dependsOn": [],
+      "inputs": [],
+      "allowedCapabilities": [
+        "residential.hold-return-analysis"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "标准化标的和经营目的",
+      "description": "动手前先完整阅读 knowledge/skills/residential-subject-intake/SKILL.md，标准化标的、经营目的和测算基准日。"
+    },
+    {
+      "id": "t1",
+      "role": "bk-hva-005",
+      "dependsOn": [
+        "t0"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t0"
+        }
+      ],
+      "allowedCapabilities": [
+        "residential.hold-return-analysis"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "经营参数和情景核验",
+      "description": "动手前先完整阅读 knowledge/skills/residential-hold-return-acquisition/SKILL.md，核验空置、费用、税费、持有期、折现率、退出收益率和退出费用的来源与确认状态。"
+    },
+    {
+      "id": "t2",
+      "role": "bk-hva-001",
+      "dependsOn": [
+        "t0"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t0"
+        }
+      ],
+      "allowedCapabilities": [
+        "residential.market-value-reference"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "获取市场价值结构化快照",
+      "description": "读取有效市场价值结构化快照；缺失或版本失效时按 knowledge/skills/residential-market-value-reference/SKILL.md 重新生成。"
+    },
+    {
+      "id": "t3",
+      "role": "bk-hva-003",
+      "dependsOn": [
+        "t0"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t0"
+        }
+      ],
+      "allowedCapabilities": [
+        "residential.rent-reference"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "获取租金结构化快照",
+      "description": "读取有效租金结构化快照；缺失或版本失效时按 knowledge/skills/residential-rent-reference/SKILL.md 重新生成。"
+    },
+    {
+      "id": "t4",
+      "role": "bk-hva-005",
+      "dependsOn": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t1"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t2"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t3"
+        }
+      ],
+      "allowedCapabilities": [
+        "residential.hold-return-analysis"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "确定性收益计算",
+      "description": "调用确定性能力 housevalue.realestate.hold-return.calculate 生成 NOI、收益率、DCF、IRR、收购价参考线和敏感性结果；只读取结构化快照，不得从渲染报告提取任何计算输入。"
+    },
+    {
+      "id": "t5",
+      "role": "bk-hva-005",
+      "dependsOn": [
+        "t4"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t4"
+        }
+      ],
+      "allowedCapabilities": [
+        "residential.hold-return-analysis"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "解释收益和收购价情景",
+      "description": "动手前先完整阅读 knowledge/skills/residential-hold-return-acquisition/SKILL.md，解释基础、压力及其他已配置情景，不修改确定性结果。"
+    },
+    {
+      "id": "t6",
+      "role": "bk-hva-006",
+      "dependsOn": [
+        "t4",
+        "t5"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t4"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t5"
+        }
+      ],
+      "allowedCapabilities": [
+        "residential.evidence-audit"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "证据链复核",
+      "description": "核验输入快照、经营参数、calculation_snapshot_id、规则版本、标的一致性和发布状态。"
+    },
+    {
+      "id": "t7",
+      "role": "bk-hva-005",
+      "dependsOn": [
+        "t6"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t6"
+        }
+      ],
+      "allowedCapabilities": [
+        "residential.hold-return-analysis"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "生成结构化快照和咨询报告",
+      "description": "动手前先完整阅读 knowledge/skills/residential-advisory-report-quality/SKILL.md，先保存持有收益结构化快照，再生成咨询报告。"
+    },
+    {
+      "id": "t8",
+      "role": "bk-hva-007",
+      "dependsOn": [
+        "t7"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t7"
+        }
+      ],
+      "allowedCapabilities": [
+        "residential.report-quality-review"
+      ],
+      "outputSchema": "single-home-hold-return-acquisition.output",
+      "retryPolicy": "quality-repair",
+      "subject": "质量门禁",
+      "description": "按 residential-advisory-report-quality 规则执行输入、数字、版本、措辞、敏感性和渲染门禁。"
+    }
+  ],
+  "gates": [
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "city-coverage",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "subject-consistency",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "published-release-only",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "deterministic-numbers-only",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "technical-refs-complete",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "numbers-match-dataset",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "no-banned-tokens",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "delivery-facts-complete",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "sensitive-content-scan",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "package-integrity",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "render-no-overflow",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-hold-return-acquisition.quality",
+      "gate": "placeholder-clean",
+      "appliesTo": [
+        "deliverable"
+      ]
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "deliverable",
+      "outputTemplate": "single-home-hold-return-acquisition.output",
+      "fromTasks": [
+        "t8"
+      ],
+      "renderMode": "final"
+    }
+  ],
+  "scenarioId": "single-home-hold-return-acquisition",
+  "leadExpert": "bk-hva-005"
+}

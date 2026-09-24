@@ -1,0 +1,101 @@
+{
+  "id": "single-home-hold-return-acquisition.output",
+  "version": "0.2.0",
+  "schemaVersion": 2,
+  "media": [
+    "markdown"
+  ],
+  "sections": [
+    {
+      "id": "subject",
+      "required": true,
+      "fields": [
+        "标的、经营目的和测算基准日"
+      ]
+    },
+    {
+      "id": "input_assumptions",
+      "required": true,
+      "fields": [
+        "价值、租金、空置、费用、税费、持有期、折现和退出参数"
+      ]
+    },
+    {
+      "id": "noi",
+      "required": true,
+      "fields": [
+        "仅引用确定性计算快照中的 NOI"
+      ]
+    },
+    {
+      "id": "yield",
+      "required": true,
+      "fields": [
+        "静态收益率和其他已配置收益率"
+      ]
+    },
+    {
+      "id": "dcf",
+      "required": true,
+      "fields": [
+        "DCF 结果、期限与折现假设"
+      ]
+    },
+    {
+      "id": "irr",
+      "required": true,
+      "fields": [
+        "基础、压力和其他已配置情景 IRR"
+      ]
+    },
+    {
+      "id": "acquisition_reference_lines",
+      "required": true,
+      "fields": [
+        "不同目标条件下的收购价情景参考线"
+      ]
+    },
+    {
+      "id": "sensitivity",
+      "required": true,
+      "fields": [
+        "结构化敏感性结果，不由 AI 补算"
+      ]
+    },
+    {
+      "id": "technical_refs",
+      "required": true,
+      "fields": [
+        "输入快照、calculation_snapshot_id、规则版本和 snapshot_schema_version"
+      ]
+    },
+    {
+      "id": "limitations",
+      "required": true,
+      "fields": [
+        "参数、情景、咨询边界和审批边界"
+      ]
+    }
+  ],
+  "renderModes": {
+    "discussion": {
+      "anonymize": true
+    },
+    "final": {
+      "anonymize": false
+    }
+  },
+  "appliesToScenario": "single-home-hold-return-acquisition",
+  "dataRules": {
+    "annotationLevels": [
+      "verified_fact",
+      "user_input",
+      "structured_measurement",
+      "assumption_or_pending"
+    ],
+    "sourceFormat": "structured_snapshot 字段路径（快照编号，规则版本，基准日）",
+    "forbidFabricatedNumbers": true,
+    "notes": "只解释确定性代码返回的数值，禁止从渲染报告取数；Agent 只可形成内部草稿或待人工复核状态，对外交付和投资审批必须由授权人工完成。"
+  },
+  "renderingNotes": "交付前完成内容、计算、合规及逐页渲染复核。"
+}

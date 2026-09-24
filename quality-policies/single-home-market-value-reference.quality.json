@@ -1,0 +1,222 @@
+{
+  "id": "single-home-market-value-reference.quality",
+  "version": "0.2.0",
+  "schemaVersion": 2,
+  "gates": [
+    {
+      "id": "city-coverage",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "城市和住宅类型必须由正式服务明确覆盖。"
+        ]
+      }
+    },
+    {
+      "id": "subject-consistency",
+      "kind": "semantic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "semantic",
+      "config": {
+        "rules": [
+          "标的资料、模型输入、可比查询和报告对象必须一致。"
+        ]
+      }
+    },
+    {
+      "id": "published-release-only",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "正式结果只能绑定已发布的数据版本和模型版本。"
+        ]
+      }
+    },
+    {
+      "id": "deterministic-numbers-only",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "全部数值必须来自结构化接口或确定性计算快照。"
+        ]
+      }
+    },
+    {
+      "id": "technical-refs-complete",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "必要查询、数据、模型、推理和快照引用必须齐全。"
+        ]
+      }
+    },
+    {
+      "id": "numbers-match-dataset",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "报告数字、单位、日期和条件必须与结构化快照一致。"
+        ]
+      }
+    },
+    {
+      "id": "no-banned-tokens",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "compliance",
+      "config": {
+        "rules": [
+          "不得将咨询成果表述为法定评估或估价结论。"
+        ],
+        "bannedTokens": [
+          "资产评估报告",
+          "房地产估价报告",
+          "法定评估结论"
+        ]
+      }
+    },
+    {
+      "id": "delivery-facts-complete",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "config": {
+        "rules": [
+          "权属、实勘和资料事实达到对应交付要求，否则只保留内部复核状态。"
+        ]
+      }
+    },
+    {
+      "id": "sensitive-content-scan",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "compliance",
+      "config": {
+        "rules": [
+          "包和输出中不得出现凭据、客户敏感信息或本地绝对路径。"
+        ]
+      }
+    },
+    {
+      "id": "package-integrity",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "config": {
+        "rules": [
+          "声明的文件和引用必须存在且可解析。"
+        ]
+      }
+    },
+    {
+      "id": "render-no-overflow",
+      "kind": "visual",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "format",
+      "config": {
+        "rules": [
+          "DOCX 渲染必须完成逐页检查且无溢出、截断或不可读内容。"
+        ]
+      }
+    },
+    {
+      "id": "placeholder-clean",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "structure",
+      "config": {
+        "rules": [
+          "对外交付不得保留模板占位符或待替换文本。"
+        ]
+      }
+    },
+    {
+      "id": "same-community-evidence",
+      "kind": "semantic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "soft",
+      "phase": "semantic",
+      "config": {
+        "rules": [
+          "没有同小区样本时披露证据限制。"
+        ]
+      }
+    },
+    {
+      "id": "local-attribution",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "soft",
+      "config": {
+        "rules": [
+          "本地归因不可用时不得以全局重要度替代。"
+        ]
+      }
+    },
+    {
+      "id": "outline-match",
+      "kind": "semantic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "soft",
+      "phase": "semantic",
+      "config": {
+        "rules": [
+          "章节与市场价值参考输出模板逐项对应。"
+        ]
+      }
+    }
+  ],
+  "maxRepairRounds": 2,
+  "appliesToScenario": "single-home-market-value-reference",
+  "notes": "任一硬门不通过时不得形成对外定稿；修复轮次耗尽后转人工处理，并建议在目标平台保存哈希、抽样截图和 GATE 文件。"
+}

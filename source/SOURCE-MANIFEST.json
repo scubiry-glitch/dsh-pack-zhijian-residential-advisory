@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "packId": "zhijian-residential-advisory",
+  "sources": [
+    {
+      "id": "partner-development-convention",
+      "title": "智见合作伙伴开发文档",
+      "locator": "https://yy.meizu.life/render/zhijian/partner-devdoc.html",
+      "authorizationStatus": "public_reference",
+      "usage": "Agent 包结构、专家、场景、能力契约及提交约定"
+    },
+    {
+      "id": "partner-sample-pack",
+      "title": "智见合作伙伴示例包",
+      "locator": "https://yy.meizu.life/render/zhijian/partner-sample-pack.html",
+      "authorizationStatus": "public_reference",
+      "usage": "Schema v2 字段、样例组件和目录结构对照"
+    },
+    {
+      "id": "project-context",
+      "title": "房屋价值平台项目上下文",
+      "locator": "docs/01_项目管理/PROJECT_CONTEXT.md",
+      "authorizationStatus": "project_internal",
+      "usage": "现有平台能力、版本状态与交付边界"
+    },
+    {
+      "id": "project-agent-constraints",
+      "title": "房屋价值平台 Agent 工作约束",
+      "locator": "AGENTS.md",
+      "authorizationStatus": "project_internal",
+      "usage": "事实、计算、发布、报告与验收规则"
+    }
+  ]
+}
+

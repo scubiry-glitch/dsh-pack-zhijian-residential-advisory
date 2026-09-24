@@ -1,0 +1,21 @@
+{
+  "id": "zhijian-residential-advisory-knowledge",
+  "version": "0.1.0",
+  "schemaVersion": 2,
+  "kind": "files",
+  "capabilities": [
+    "read",
+    "cite"
+  ],
+  "freshness": "static",
+  "scopes": [
+    "experts/bk-hva-001",
+    "experts/bk-hva-002",
+    "experts/bk-hva-003",
+    "experts/bk-hva-004",
+    "experts/bk-hva-005",
+    "experts/bk-hva-006",
+    "experts/bk-hva-007",
+    "domain/reporting-boundaries"
+  ]
+}

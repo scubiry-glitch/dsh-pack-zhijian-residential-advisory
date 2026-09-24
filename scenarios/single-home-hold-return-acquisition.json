@@ -1,0 +1,30 @@
+{
+  "id": "single-home-hold-return-acquisition",
+  "name": "持有收益与收购价测算 Agent",
+  "description": "基于结构化价值、租金和确定性计算快照生成持有收益、收购价参考线及咨询报告。",
+  "version": "0.2.0",
+  "schemaVersion": 2,
+  "domain": "residential-realestate",
+  "intents": ["持有收益", "NOI", "收益率", "IRR", "DCF", "收购价", "敏感性"],
+  "requiredCapabilities": ["residential.hold-return-analysis", "residential.market-value-reference", "residential.rent-reference", "residential.evidence-audit", "residential.report-quality-review"],
+  "routingPolicy": {"candidateHints": ["bk-hva-005", "bk-hva-001", "bk-hva-003", "bk-hva-006", "bk-hva-007"]},
+  "teamTemplate": "hold-return-team",
+  "outputTemplate": "single-home-hold-return-acquisition.output",
+  "qualityPolicy": "single-home-hold-return-acquisition.quality",
+  "knowledgePolicy": {"required": ["zhijian-residential-advisory-knowledge"]},
+  "toolPolicy": {"allowed": ["expert_provider_call"]},
+  "experts": ["bk-hva-005", "bk-hva-001", "bk-hva-003", "bk-hva-006", "bk-hva-007"],
+  "tasks": [
+    {"subject": "标准化标的和经营目的", "description": "动手前先完整阅读 knowledge/skills/residential-subject-intake/SKILL.md，标准化标的、经营目的和测算基准日。", "expert": "bk-hva-005", "dependsOn": []},
+    {"subject": "经营参数和情景核验", "description": "动手前先完整阅读 knowledge/skills/residential-hold-return-acquisition/SKILL.md，核验空置、费用、税费、持有期、折现率、退出收益率和退出费用的来源与确认状态。", "expert": "bk-hva-005", "dependsOn": [0]},
+    {"subject": "获取市场价值结构化快照", "description": "读取有效市场价值结构化快照；缺失或版本失效时按 knowledge/skills/residential-market-value-reference/SKILL.md 重新生成。", "expert": "bk-hva-001", "dependsOn": [0]},
+    {"subject": "获取租金结构化快照", "description": "读取有效租金结构化快照；缺失或版本失效时按 knowledge/skills/residential-rent-reference/SKILL.md 重新生成。", "expert": "bk-hva-003", "dependsOn": [0]},
+    {"subject": "确定性收益计算", "description": "调用确定性能力 housevalue.realestate.hold-return.calculate 生成 NOI、收益率、DCF、IRR、收购价参考线和敏感性结果；只读取结构化快照，不得从渲染报告提取任何计算输入。", "expert": "bk-hva-005", "dependsOn": [1, 2, 3]},
+    {"subject": "解释收益和收购价情景", "description": "动手前先完整阅读 knowledge/skills/residential-hold-return-acquisition/SKILL.md，解释基础、压力及其他已配置情景，不修改确定性结果。", "expert": "bk-hva-005", "dependsOn": [4]},
+    {"subject": "证据链复核", "description": "核验输入快照、经营参数、calculation_snapshot_id、规则版本、标的一致性和发布状态。", "expert": "bk-hva-006", "dependsOn": [4, 5]},
+    {"subject": "生成结构化快照和咨询报告", "description": "动手前先完整阅读 knowledge/skills/residential-advisory-report-quality/SKILL.md，先保存持有收益结构化快照，再生成咨询报告。", "expert": "bk-hva-005", "dependsOn": [6]},
+    {"subject": "质量门禁", "description": "按 residential-advisory-report-quality 规则执行输入、数字、版本、措辞、敏感性和渲染门禁。", "expert": "bk-hva-007", "dependsOn": [7]}
+  ],
+  "deliverable": "结构化持有收益与收购价快照及持有收益与收购价测算咨询报告",
+  "skill": {"id": "residential-hold-return-acquisition", "purpose": "解释确定性收益和收购价情景", "appliesToTaskIndex": 5}
+}

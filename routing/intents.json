@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "schemaVersion": 2,
+  "routes": [
+    {"scenario": "single-home-market-value-reference", "triggers": ["二手房价值", "成交价", "市场价", "价值参考"]},
+    {"scenario": "single-home-rent-reference", "triggers": ["月租金", "单位租金", "出租定价", "租金参考"]},
+    {"scenario": "single-home-hold-return-acquisition", "triggers": ["持有收益", "NOI", "收益率", "IRR", "DCF", "收购价", "敏感性"]}
+  ],
+  "boundaryRoute": {
+    "triggers": ["资产评估报告", "房地产估价报告", "授信审批", "备案", "核准"],
+    "action": "return_consulting_boundary_and_require_authorized_process"
+  }
+}

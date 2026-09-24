@@ -1,0 +1,248 @@
+{
+  "pack_id": "zhijian-residential-advisory",
+  "pack_version": "0.2.0",
+  "schema_version": "zhijian_pack_build_manifest.v1",
+  "source_file_count": 48,
+  "source_files": [
+    {
+      "path": "README.md",
+      "sha256": "b723e95d93ccd220246bb8c3b74683f68708bfa01418b4a3032b2bc09f65424e",
+      "size": 2401
+    },
+    {
+      "path": "SUBMISSION-CHECKLIST.md",
+      "sha256": "d811420bc7f8b8de828d8428260274884961b823e60c66a7e6767c0d7e4b4d8a",
+      "size": 804
+    },
+    {
+      "path": "data-contracts/capability-contract.csv",
+      "sha256": "6efc4f12da1479629835fe77f7fac8152f45b9596091065922a4bf835741233b",
+      "size": 2973
+    },
+    {
+      "path": "data-contracts/provider-envelope.schema.json",
+      "sha256": "be75448544b88b6597f00d43553dfa4554e0df8928497a527818e4c2fea53cde",
+      "size": 1083
+    },
+    {
+      "path": "data-contracts/structured-snapshot-fields.md",
+      "sha256": "65a4e10f21f74ce2eadeab26a40005c2d815eb86c04fc0602d621e3d243f3eff",
+      "size": 906
+    },
+    {
+      "path": "domain-knowledge/reporting-boundaries.md",
+      "sha256": "6716d7644ee1fdc3925e1affb48d286d8bcb21743b67171251e0eef36480ec25",
+      "size": 1267
+    },
+    {
+      "path": "experts/bk-hva-001.json",
+      "sha256": "96a6c7e231d25351a154c7a7c17e527243d3a628e8cf53767cd0c8c130a2d9e0",
+      "size": 3349
+    },
+    {
+      "path": "experts/bk-hva-002.json",
+      "sha256": "ecffa9755376725c11268c0668c6cfcd677c0726f2fba14acede70b79a1308de",
+      "size": 3108
+    },
+    {
+      "path": "experts/bk-hva-003.json",
+      "sha256": "f762300de0bf08f03e31c724c1dec09fa4e0b6dde131b02c288f67f8e9832545",
+      "size": 3222
+    },
+    {
+      "path": "experts/bk-hva-004.json",
+      "sha256": "3d155f89eb8446651fc980dea1471ab029d33bf7b4fc1981cc4dcd1b589f3b3e",
+      "size": 3064
+    },
+    {
+      "path": "experts/bk-hva-005.json",
+      "sha256": "65dbdce58d319750162a32c4965aa0f9d715b1c39eb008a1521359da397a9d72",
+      "size": 3310
+    },
+    {
+      "path": "experts/bk-hva-006.json",
+      "sha256": "df888810dfc5ca496473b659b144b3432cd5e9ee4accb54ed24e0998348515d3",
+      "size": 3134
+    },
+    {
+      "path": "experts/bk-hva-007.json",
+      "sha256": "e27d8971efea3e59cd575a4826bace69559863ba02f3ed0cc7e5243279ccc891",
+      "size": 3147
+    },
+    {
+      "path": "knowledge/experts/bk-hva-001/PROFILE-SOURCES.md",
+      "sha256": "c2f351344e411ad649c3aa23a7cd3b851173dfe04b3cd36fead167001927dd5c",
+      "size": 423
+    },
+    {
+      "path": "knowledge/experts/bk-hva-002/PROFILE-SOURCES.md",
+      "sha256": "9b2ec2cf8f52c692521bb250fe5cf5b3ef69806b1679e72a2a43ef251d109490",
+      "size": 345
+    },
+    {
+      "path": "knowledge/experts/bk-hva-003/PROFILE-SOURCES.md",
+      "sha256": "30b3d9e6a6a84359565077b7cf1bc1000862c7aa8c5b5029ccee50e8e8bba0e1",
+      "size": 360
+    },
+    {
+      "path": "knowledge/experts/bk-hva-004/PROFILE-SOURCES.md",
+      "sha256": "88e269847918d93edd64fa72d0634fbf0f87a9ea1e84a1cbaafc545321bae932",
+      "size": 369
+    },
+    {
+      "path": "knowledge/experts/bk-hva-005/PROFILE-SOURCES.md",
+      "sha256": "db0ad89e7b965f46fe343842325fde69857568686f5f55bc8c1490e0bf62ad5d",
+      "size": 375
+    },
+    {
+      "path": "knowledge/experts/bk-hva-006/PROFILE-SOURCES.md",
+      "sha256": "17f4504fc159b80f2991939cf9b365616f38d387ed75d2f0288eaacd1a8664e8",
+      "size": 345
+    },
+    {
+      "path": "knowledge/experts/bk-hva-007/PROFILE-SOURCES.md",
+      "sha256": "fdd835b2fd86984262d92951aeabf3caf8c49554591fc8257a3681c09b76cc38",
+      "size": 366
+    },
+    {
+      "path": "knowledge-providers/provider-bindings.json",
+      "sha256": "75ebb71366354fda734fa9f77cbdb7808df5f56721586e263f4c81354de0e0a5",
+      "size": 2547
+    },
+    {
+      "path": "knowledge-providers/skill-catalog.json",
+      "sha256": "a36fac2ee6c331b52197ef954efbb64a85504c2b454231f51ff6dd59dde7c6a0",
+      "size": 1435
+    },
+    {
+      "path": "method-packs/residential-advisory-methods.md",
+      "sha256": "80a85d92b59560d554d149390255f701f7290f7d99053b05cb1735b8c3d3de85",
+      "size": 3402
+    },
+    {
+      "path": "output-templates/single-home-hold-return-acquisition.output.json",
+      "sha256": "633491d73f6da09bc282e20961f45a43b8ba285c86f908cec5caecfa8314f339",
+      "size": 1948
+    },
+    {
+      "path": "output-templates/single-home-market-value-reference.output.json",
+      "sha256": "e3b2d6f89363079d4d5db2defbfffbf8c4cb04f65f43808ce7120887a5fd873a",
+      "size": 1784
+    },
+    {
+      "path": "output-templates/single-home-rent-reference.output.json",
+      "sha256": "70d029e9a83e8f30ea7b695efa4fcbfde34bb12dbe79c666b02dadb520782edd",
+      "size": 1774
+    },
+    {
+      "path": "pack.json",
+      "sha256": "3c3c162f5acfd509a17e4129119ca04320587400fe06027476c0f4ec32e16c44",
+      "size": 713
+    },
+    {
+      "path": "quality-policies/single-home-hold-return-acquisition.quality.json",
+      "sha256": "110eefe51651cd74afc6ece9f02ff176e739230f18b604b40a829ea29d778565",
+      "size": 2658
+    },
+    {
+      "path": "quality-policies/single-home-market-value-reference.quality.json",
+      "sha256": "ff4020f93cf0108cc5764af59eb5bca6576866317f881d2acb9204b4cd131844",
+      "size": 2556
+    },
+    {
+      "path": "quality-policies/single-home-rent-reference.quality.json",
+      "sha256": "74145a9b97c13afd21f4988c90cb514400cc1df86977a280c1d688dae06da33e",
+      "size": 2551
+    },
+    {
+      "path": "routing/intents.json",
+      "sha256": "f23349276239f14ab6505bf9022332bcd21a95516652c4589e5014a5d22f9a14",
+      "size": 667
+    },
+    {
+      "path": "scenarios/single-home-hold-return-acquisition.json",
+      "sha256": "57c4dc38b82496311d2234c85a9e983d32c72bb526865b524a6adfd7074018e0",
+      "size": 3710
+    },
+    {
+      "path": "scenarios/single-home-market-value-reference.json",
+      "sha256": "ba055eba0a14b436c636041b7f9d62d7f3f0b09940ea27d5212f98dbe967ea2f",
+      "size": 3295
+    },
+    {
+      "path": "scenarios/single-home-rent-reference.json",
+      "sha256": "268369071ca0d899be1178e607af95a210f41425d21971323c3970a5f059aa4c",
+      "size": 3209
+    },
+    {
+      "path": "skills/residential-advisory-report-quality/SKILL.md",
+      "sha256": "b5564e782774f9f88429a18832749f0d7553cbc296ef2786e870e9c40d703e1c",
+      "size": 1423
+    },
+    {
+      "path": "skills/residential-advisory-report-quality/references/report-gates.md",
+      "sha256": "4e71b037433332d14695188bdc37b93241583a23fe38d56ecc13dd0f42fd1d33",
+      "size": 738
+    },
+    {
+      "path": "skills/residential-hold-return-acquisition/SKILL.md",
+      "sha256": "f85749f2a75a288226ec75a45b2d3fe896524d903898bd7e68bf46be5d05539d",
+      "size": 1512
+    },
+    {
+      "path": "skills/residential-hold-return-acquisition/references/deterministic-calculation-boundary.md",
+      "sha256": "f2aefb6e0487c376c7bc70ed9aaaef41d8f7004101576a0039605a124ffda23a",
+      "size": 779
+    },
+    {
+      "path": "skills/residential-market-value-reference/SKILL.md",
+      "sha256": "9a673b851b625743236026590842f9bcccb3ef180869a65bd65b93b0c09bbfb7",
+      "size": 1543
+    },
+    {
+      "path": "skills/residential-market-value-reference/references/market-value-workflow.md",
+      "sha256": "2e73fce6618ea814e2ce6db6990f409c8ee8e7d44133c5a14d78d6d2b54ca096",
+      "size": 689
+    },
+    {
+      "path": "skills/residential-rent-reference/SKILL.md",
+      "sha256": "195cc301feb0308ccaff3d70b2f28d865a363f09d3f47617e1fa1f57a146c7ad",
+      "size": 1368
+    },
+    {
+      "path": "skills/residential-rent-reference/references/rent-workflow.md",
+      "sha256": "9009df716223a1d117412cc9bff448c81d1127d1f4cba94ddbc8fd3133144bee",
+      "size": 546
+    },
+    {
+      "path": "skills/residential-subject-intake/SKILL.md",
+      "sha256": "4cb9f9c2e21f7c2cb0093ab553a160c35b289d2fa31d074a55dfa533cb639633",
+      "size": 1433
+    },
+    {
+      "path": "skills/residential-subject-intake/references/input-governance.md",
+      "sha256": "9cbf4347fbd99f732b0a2ecf3c7a6da7ea39778cbdf7d09f7c643f9fe7fdff6c",
+      "size": 756
+    },
+    {
+      "path": "source/SOURCE-MANIFEST.json",
+      "sha256": "693074ee65ae40e900ff0c707555e07b7c341ab9421f54cdca52f432d69d107a",
+      "size": 1225
+    },
+    {
+      "path": "team-templates/hold-return-team.json",
+      "sha256": "f45e079fdb2c4c2be6637e820befcf82cc06b9bc72af4556534ac79c26867be7",
+      "size": 182
+    },
+    {
+      "path": "team-templates/market-value-team.json",
+      "sha256": "6df86331e67000d6d52e517dbb54b3c93cd1490647d82a0bf35d24c1cc87b540",
+      "size": 169
+    },
+    {
+      "path": "team-templates/rent-reference-team.json",
+      "sha256": "c5eb89b6034c62b15d62efa6105ee806017c77f41fa7d94fcbb217ed293bd475",
+      "size": 171
+    }
+  ]
+}
