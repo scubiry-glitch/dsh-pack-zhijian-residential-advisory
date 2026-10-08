@@ -1,7 +1,7 @@
 ---
 name: residential-rent-reference
 description: '住宅租金参考测算工艺。用于租赁可比查询、正式租金模型、同小区租金、单位租金、合理性和归因解释；挂牌、成交和模型来源不清时不得合并表述。Triggers on "月租金", "单位租金", "出租定价", "住宅租金参考".'
-version: 0.2.0
+version: 0.3.0
 user-invocable: true
 argument-hint: "[测算/复核] 单套住宅租赁资料"
 license: 机构内部

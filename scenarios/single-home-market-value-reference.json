@@ -2,28 +2,119 @@
   "id": "single-home-market-value-reference",
   "name": "单套住宅市场价值参考测算 Agent",
   "description": "以正式数据、模型、交易可比和归因证据生成单套住宅市场价值参考测算及咨询报告。",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "domain": "residential-realestate",
-  "intents": ["二手房价值", "成交价参考", "市场价值参考", "单套住宅价值测算"],
-  "requiredCapabilities": ["residential.market-value-reference", "residential.sale-comparable-review", "residential.evidence-audit", "residential.report-quality-review"],
-  "routingPolicy": {"candidateHints": ["bk-hva-001", "bk-hva-002", "bk-hva-006", "bk-hva-007"]},
+  "intents": [
+    "二手房价值",
+    "成交价参考",
+    "市场价值参考",
+    "单套住宅价值测算"
+  ],
+  "requiredCapabilities": [
+    "residential.market-value-reference",
+    "residential.sale-comparable-review",
+    "residential.evidence-audit",
+    "residential.report-quality-review"
+  ],
+  "routingPolicy": {
+    "candidateHints": [
+      "bk-hva-001",
+      "bk-hva-002",
+      "bk-hva-006",
+      "bk-hva-007"
+    ]
+  },
   "teamTemplate": "market-value-team",
   "outputTemplate": "single-home-market-value-reference.output",
   "qualityPolicy": "single-home-market-value-reference.quality",
-  "knowledgePolicy": {"required": ["zhijian-residential-advisory-knowledge"]},
-  "toolPolicy": {"allowed": ["expert_provider_call"]},
-  "experts": ["bk-hva-001", "bk-hva-002", "bk-hva-006", "bk-hva-007"],
+  "knowledgePolicy": {
+    "required": [
+      "zhijian-residential-advisory-knowledge"
+    ]
+  },
+  "toolPolicy": {
+    "allowed": [
+      "expert_provider_call"
+    ]
+  },
+  "experts": [
+    "bk-hva-001",
+    "bk-hva-002",
+    "bk-hva-006",
+    "bk-hva-007"
+  ],
   "tasks": [
-    {"subject": "标准化资料和测算目的", "description": "动手前先完整阅读 knowledge/skills/residential-subject-intake/SKILL.md，区分核验事实、用户输入、结构化回填、假设和待补资料。", "expert": "bk-hva-001", "dependsOn": []},
-    {"subject": "覆盖与完整性检查", "description": "按 residential-subject-intake 规则解析地址，核验城市覆盖和必要字段；未覆盖时停止。", "expert": "bk-hva-006", "dependsOn": [0]},
-    {"subject": "交易可比查询", "description": "动手前先完整阅读 knowledge/skills/residential-market-value-reference/SKILL.md，查询同区、同板块和同小区交易可比，保留原始值、调整值、入选和排除理由。", "expert": "bk-hva-002", "dependsOn": [1]},
-    {"subject": "正式模型推理", "description": "按 residential-market-value-reference 规则调用已发布市场价值参考模型，保留 model_version 和 inference_id。", "expert": "bk-hva-001", "dependsOn": [1]},
-    {"subject": "合理性和归因", "description": "动手前先完整阅读 knowledge/skills/residential-market-value-reference/SKILL.md，对比模型预测、同小区和调整后可比基准，仅解释可用的本地或逐样本归因。", "expert": "bk-hva-002", "dependsOn": [2, 3]},
-    {"subject": "证据链复核", "description": "核验 query_id、data_version、model_version、inference_id、标的一致性和发布状态。", "expert": "bk-hva-006", "dependsOn": [2, 3, 4]},
-    {"subject": "生成结构化快照和咨询报告", "description": "动手前先完整阅读 knowledge/skills/residential-advisory-report-quality/SKILL.md，先保存追溯快照，再按输出模板生成咨询报告。", "expert": "bk-hva-001", "dependsOn": [5]},
-    {"subject": "质量门禁", "description": "按 residential-advisory-report-quality 规则执行数字、来源、版本、措辞、资料和交付状态门禁。", "expert": "bk-hva-007", "dependsOn": [6]}
+    {
+      "subject": "标准化资料和测算目的",
+      "description": "动手前先完整阅读 knowledge/skills/residential-subject-intake/SKILL.md，区分核验事实、用户输入、结构化回填、假设和待补资料。",
+      "expert": "bk-hva-001",
+      "dependsOn": []
+    },
+    {
+      "subject": "覆盖与完整性检查",
+      "description": "按 residential-subject-intake 规则解析地址，核验城市覆盖和必要字段；未覆盖时停止。",
+      "expert": "bk-hva-006",
+      "dependsOn": [
+        0
+      ]
+    },
+    {
+      "subject": "交易可比查询",
+      "description": "动手前先完整阅读 knowledge/skills/residential-market-value-reference/SKILL.md，查询同区、同板块和同小区交易可比，保留原始值、调整值、入选和排除理由。",
+      "expert": "bk-hva-002",
+      "dependsOn": [
+        1
+      ]
+    },
+    {
+      "subject": "正式模型推理",
+      "description": "按 residential-market-value-reference 规则调用已发布市场价值参考模型，保留 model_version 和 inference_id。",
+      "expert": "bk-hva-001",
+      "dependsOn": [
+        1
+      ]
+    },
+    {
+      "subject": "合理性和归因",
+      "description": "动手前先完整阅读 knowledge/skills/residential-market-value-reference/SKILL.md，对比模型预测、同小区和调整后可比基准，仅解释可用的本地或逐样本归因。",
+      "expert": "bk-hva-002",
+      "dependsOn": [
+        2,
+        3
+      ]
+    },
+    {
+      "subject": "证据链复核",
+      "description": "核验 query_id、data_version、model_version、inference_id、标的一致性和发布状态。",
+      "expert": "bk-hva-006",
+      "dependsOn": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "subject": "生成结构化快照和咨询报告",
+      "description": "动手前先完整阅读 knowledge/skills/residential-advisory-report-quality/SKILL.md，先保存追溯快照，再按输出模板生成咨询报告。",
+      "expert": "bk-hva-001",
+      "dependsOn": [
+        5
+      ]
+    },
+    {
+      "subject": "质量门禁",
+      "description": "按 residential-advisory-report-quality 规则执行数字、来源、版本、措辞、资料和交付状态门禁。",
+      "expert": "bk-hva-007",
+      "dependsOn": [
+        6
+      ]
+    }
   ],
   "deliverable": "结构化市场价值参考快照与市场价值参考测算咨询报告",
-  "skill": {"id": "residential-market-value-reference", "purpose": "执行市场价值参考测算融合工艺", "appliesToTaskIndex": 4}
+  "skill": {
+    "id": "residential-market-value-reference",
+    "purpose": "执行市场价值参考测算融合工艺",
+    "appliesToTaskIndex": 4
+  }
 }

@@ -1,6 +1,6 @@
 {
   "id": "rent-reference-team",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "parameters": {
     "type": "object",
@@ -59,9 +59,7 @@
       "role": "bk-hva-003",
       "dependsOn": [],
       "inputs": [],
-      "allowedCapabilities": [
-        "residential.rent-reference"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-rent-reference.output",
       "retryPolicy": "quality-repair",
       "subject": "标准化资料和租赁用途",
@@ -80,7 +78,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.evidence-audit"
+        "housevalue.realestate.address.resolve"
       ],
       "outputSchema": "single-home-rent-reference.output",
       "retryPolicy": "quality-repair",
@@ -100,7 +98,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.rent-comparable-review"
+        "housevalue.realestate.rent-comparables.query"
       ],
       "outputSchema": "single-home-rent-reference.output",
       "retryPolicy": "quality-repair",
@@ -120,7 +118,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.rent-reference"
+        "housevalue.realestate.rent.infer"
       ],
       "outputSchema": "single-home-rent-reference.output",
       "retryPolicy": "quality-repair",
@@ -144,9 +142,7 @@
           "ref": "t3"
         }
       ],
-      "allowedCapabilities": [
-        "residential.rent-comparable-review"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-rent-reference.output",
       "retryPolicy": "quality-repair",
       "subject": "合理性和归因",
@@ -174,9 +170,7 @@
           "ref": "t4"
         }
       ],
-      "allowedCapabilities": [
-        "residential.evidence-audit"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-rent-reference.output",
       "retryPolicy": "quality-repair",
       "subject": "证据链复核",
@@ -195,7 +189,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.rent-reference"
+        "housevalue.realestate.report.generate"
       ],
       "outputSchema": "single-home-rent-reference.output",
       "retryPolicy": "quality-repair",
@@ -214,9 +208,7 @@
           "ref": "t6"
         }
       ],
-      "allowedCapabilities": [
-        "residential.report-quality-review"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-rent-reference.output",
       "retryPolicy": "quality-repair",
       "subject": "质量门禁",

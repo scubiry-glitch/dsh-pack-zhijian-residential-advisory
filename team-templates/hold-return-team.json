@@ -1,6 +1,6 @@
 {
   "id": "hold-return-team",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "parameters": {
     "type": "object",
@@ -70,7 +70,7 @@
       "dependsOn": [],
       "inputs": [],
       "allowedCapabilities": [
-        "residential.hold-return-analysis"
+        "housevalue.realestate.address.resolve"
       ],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
@@ -89,9 +89,7 @@
           "ref": "t0"
         }
       ],
-      "allowedCapabilities": [
-        "residential.hold-return-analysis"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
       "subject": "经营参数和情景核验",
@@ -110,7 +108,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.market-value-reference"
+        "housevalue.realestate.valuation.infer"
       ],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
@@ -130,7 +128,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.rent-reference"
+        "housevalue.realestate.rent.infer"
       ],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
@@ -160,7 +158,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.hold-return-analysis"
+        "housevalue.realestate.hold-return.calculate"
       ],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
@@ -179,9 +177,7 @@
           "ref": "t4"
         }
       ],
-      "allowedCapabilities": [
-        "residential.hold-return-analysis"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
       "subject": "解释收益和收购价情景",
@@ -204,9 +200,7 @@
           "ref": "t5"
         }
       ],
-      "allowedCapabilities": [
-        "residential.evidence-audit"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
       "subject": "证据链复核",
@@ -225,7 +219,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.hold-return-analysis"
+        "housevalue.realestate.report.generate"
       ],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
@@ -244,9 +238,7 @@
           "ref": "t7"
         }
       ],
-      "allowedCapabilities": [
-        "residential.report-quality-review"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-hold-return-acquisition.output",
       "retryPolicy": "quality-repair",
       "subject": "质量门禁",

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "version": "0.3.0",
+  "status": "contract_only_not_registered",
+  "capabilities": [
+    {
+      "capability": "housevalue.realestate.v2.subject.validate",
+      "httpMethod": "POST",
+      "effect": "read",
+      "readOnly": true,
+      "registrationStatus": "platform_binding_required",
+      "contractDocument": "data-contracts/v2-provider-contract.md"
+    },
+    {
+      "capability": "housevalue.realestate.v2.marketvalue.infer",
+      "httpMethod": "POST",
+      "effect": "compute",
+      "readOnly": false,
+      "registrationStatus": "platform_binding_required",
+      "contractDocument": "data-contracts/v2-provider-contract.md"
+    },
+    {
+      "capability": "housevalue.realestate.v2.rentvalue.infer",
+      "httpMethod": "POST",
+      "effect": "compute",
+      "readOnly": false,
+      "registrationStatus": "platform_binding_required",
+      "contractDocument": "data-contracts/v2-provider-contract.md"
+    },
+    {
+      "capability": "housevalue.realestate.v2.report.generate",
+      "httpMethod": "POST",
+      "effect": "create_task_artifacts",
+      "readOnly": false,
+      "registrationStatus": "platform_binding_required",
+      "contractDocument": "data-contracts/v2-provider-contract.md"
+    },
+    {
+      "capability": "housevalue.realestate.v2.job.status",
+      "httpMethod": "GET",
+      "effect": "read",
+      "readOnly": true,
+      "registrationStatus": "platform_binding_required",
+      "contractDocument": "data-contracts/v2-provider-contract.md"
+    },
+    {
+      "capability": "housevalue.realestate.v2.file.get",
+      "httpMethod": "GET",
+      "effect": "read",
+      "readOnly": true,
+      "registrationStatus": "platform_binding_required",
+      "contractDocument": "data-contracts/v2-provider-contract.md"
+    }
+  ],
+  "deliveryPolicy": {
+    "roles": [
+      "price_full",
+      "price_external",
+      "rent_full",
+      "rent_external"
+    ],
+    "reportRoleGating": false,
+    "manualApprovalRequired": false,
+    "delivery": "all_four_task_attachments",
+    "existingPlatformAuthentication": "unchanged"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "single-home-four-reports.quality",
+  "version": "0.3.0",
+  "schemaVersion": 2,
+  "gates": [
+    {
+      "id": "city-release-binding",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "城市、模型、特征、历史快照、模板及输入绑定一致，未覆盖不得跨城套用。"
+        ]
+      }
+    },
+    {
+      "id": "four-original-docx",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "四类文件各一份，文件非空、唯一，case/attempt/job 与当前任务一致，生成下载双端 SHA256 一致。"
+        ]
+      }
+    },
+    {
+      "id": "deterministic-numbers",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "报告数值来自绑定推理快照且一致，不以语言模型生成替代。"
+        ]
+      }
+    },
+    {
+      "id": "frozen-layout",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "冻结模板机器检查通过；当前生成器/字体环境已有对应视觉验收回执，不经 Markdown 重排。"
+        ]
+      }
+    },
+    {
+      "id": "external-content",
+      "kind": "deterministic",
+      "appliesTo": [
+        "deliverable"
+      ],
+      "severity": "hard",
+      "phase": "data",
+      "config": {
+        "rules": [
+          "外发版按冻结规则删减逐笔底稿，检查凭据、绝对路径、占位符及个人敏感标识；完整版仍直接提供当前任务用户。"
+        ]
+      }
+    }
+  ],
+  "maxRepairRounds": 2,
+  "notes": "领域包定义验收规则，实际评估器须由平台绑定；没有报告角色或人工批准门。缺件或质量失败不得声称四报告交付完成。"
+}

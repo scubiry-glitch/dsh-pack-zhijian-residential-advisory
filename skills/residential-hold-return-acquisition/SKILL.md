@@ -1,7 +1,7 @@
 ---
 name: residential-hold-return-acquisition
 description: '单套住宅持有收益与收购价测算工艺。用于经营参数核验、NOI、收益率、DCF、IRR、收购价参考线和敏感性情景解释；缺少确定性计算快照时阻断数值结论。Triggers on "持有收益", "NOI", "IRR", "DCF", "收购价", "敏感性".'
-version: 0.2.0
+version: 0.3.0
 user-invocable: true
 argument-hint: "[测算/复核] 价值快照、租金快照和经营参数"
 license: 机构内部

@@ -1,7 +1,7 @@
 ---
 name: residential-subject-intake
 description: '住宅标的资料标准化与覆盖核验工艺。用于地址解析、资产类型识别、字段完整性、事实状态和城市覆盖检查；关键资料缺失或城市未覆盖时只返回缺项，不生成正式测算。Triggers on "住宅资料核验", "地址解析", "城市覆盖", "估值资料清单".'
-version: 0.2.0
+version: 0.3.0
 user-invocable: true
 argument-hint: "[核验] 单套住宅资料"
 license: 机构内部

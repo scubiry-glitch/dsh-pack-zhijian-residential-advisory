@@ -1,8 +1,8 @@
 {
   "id": "zhijian-residential-advisory",
   "name": "智见住宅估值咨询基础 Agent 领域包",
-  "description": "面向单套住宅市场价值参考、住宅租金参考、持有收益与收购价测算的咨询型领域包。",
-  "version": "0.2.0",
+  "description": "面向已接入城市的住宅价格与租金咨询估值，默认由冻结生成器直接交付完整／外发四份报告；福州为稳定数据快照 Demo，另保留单业务和持有收益测算。",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "deploymentStatus": "candidate_for_zhijian_deployment",
   "caliberDeclarations": {

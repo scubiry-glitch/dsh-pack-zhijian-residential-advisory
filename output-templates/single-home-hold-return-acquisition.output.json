@@ -1,6 +1,6 @@
 {
   "id": "single-home-hold-return-acquisition.output",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "media": [
     "markdown"
@@ -95,7 +95,7 @@
     ],
     "sourceFormat": "structured_snapshot 字段路径（快照编号，规则版本，基准日）",
     "forbidFabricatedNumbers": true,
-    "notes": "只解释确定性代码返回的数值，禁止从渲染报告取数；Agent 只可形成内部草稿或待人工复核状态，对外交付和投资审批必须由授权人工完成。"
+    "notes": "只解释确定性代码返回的数值，禁止从渲染报告取数；质量检查通过后直接交付咨询报告；投资决策由使用者负责。"
   },
   "renderingNotes": "交付前完成内容、计算、合规及逐页渲染复核。"
 }

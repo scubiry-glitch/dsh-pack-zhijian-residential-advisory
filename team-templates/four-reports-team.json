@@ -1,0 +1,257 @@
+{
+  "id": "four-reports-team",
+  "version": "0.3.0",
+  "schemaVersion": 2,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "string",
+        "description": "标的材料、城市、估值日期与用途；不包含模型二进制或全量历史明细"
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+  "slots": [
+    {
+      "id": "bk-hva-001",
+      "capabilities": [
+        "residential.market-value-reference"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    {
+      "id": "bk-hva-003",
+      "capabilities": [
+        "residential.rent-reference"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    {
+      "id": "bk-hva-006",
+      "capabilities": [
+        "residential.evidence-audit"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    {
+      "id": "bk-hva-007",
+      "capabilities": [
+        "residential.report-quality-review"
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t0",
+      "role": "bk-hva-006",
+      "dependsOn": [],
+      "inputs": [],
+      "allowedCapabilities": [
+        "housevalue.realestate.v2.subject.validate"
+      ],
+      "outputSchema": "single-home-four-reports.output",
+      "retryPolicy": "quality-repair",
+      "subject": "标准化标的并绑定城市资源",
+      "description": "读取 residential-four-report-delivery Skill；校验业务必需字段并绑定 city_code、input_sha256、release_id 和价格/租金模型、特征、快照及模板哈希。城市未覆盖返回 unavailable；福州黄金案例标 demo，不作为当前市场新结论。"
+    },
+    {
+      "id": "t1",
+      "role": "bk-hva-001",
+      "dependsOn": [
+        "t0"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t0"
+        }
+      ],
+      "allowedCapabilities": [
+        "housevalue.realestate.v2.marketvalue.infer"
+      ],
+      "outputSchema": "single-home-four-reports.output",
+      "retryPolicy": "quality-repair",
+      "subject": "价格估值及交易证据",
+      "description": "按绑定城市资源执行确定性价格推理，取得价格快照及可比证据；数值不得由语言模型补算。"
+    },
+    {
+      "id": "t2",
+      "role": "bk-hva-003",
+      "dependsOn": [
+        "t0"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t0"
+        }
+      ],
+      "allowedCapabilities": [
+        "housevalue.realestate.v2.rentvalue.infer"
+      ],
+      "outputSchema": "single-home-four-reports.output",
+      "retryPolicy": "quality-repair",
+      "subject": "租金估值及租赁证据",
+      "description": "按同一标的及绑定城市资源执行确定性租金推理，取得租金快照；价格和租金有效月份分别记录。"
+    },
+    {
+      "id": "t3",
+      "role": "bk-hva-007",
+      "dependsOn": [
+        "t0",
+        "t1",
+        "t2"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t0"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t1"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t2"
+        }
+      ],
+      "allowedCapabilities": [
+        "housevalue.realestate.v2.report.generate"
+      ],
+      "outputSchema": "single-home-four-reports.output",
+      "retryPolicy": "quality-repair",
+      "subject": "提交冻结四报告生成",
+      "description": "用两份推理快照、同一 case_id/attempt_id/input_sha256/release_id 提交 business=both，roles 固定四类；idempotency_key 重试不变。异步返回 job_id；禁止 Markdown 重排或改写冻结模板。"
+    },
+    {
+      "id": "t4",
+      "role": "bk-hva-007",
+      "dependsOn": [
+        "t0",
+        "t3"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t0"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t3"
+        }
+      ],
+      "allowedCapabilities": [
+        "housevalue.realestate.v2.job.status",
+        "housevalue.realestate.v2.file.get"
+      ],
+      "outputSchema": "single-home-four-reports.output",
+      "retryPolicy": "quality-repair",
+      "subject": "等待并取回四份原始 DOCX",
+      "description": "轮询当前 job_id；成功后获取四个文件引用并由下载网关取回原始字节。验证 role、case/attempt/job、大小、生成端与下载端 SHA256，保存为任务附件。不把 DOCX base64 放进 Provider JSON。失败或超时报告实际状态，不能伪装成功。"
+    },
+    {
+      "id": "t5",
+      "role": "bk-hva-007",
+      "dependsOn": [
+        "t0",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "inputs": [
+        {
+          "kind": "task-output",
+          "ref": "t0"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t1"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t2"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t3"
+        },
+        {
+          "kind": "task-output",
+          "ref": "t4"
+        }
+      ],
+      "allowedCapabilities": [],
+      "outputSchema": "single-home-four-reports.output",
+      "retryPolicy": "quality-repair",
+      "subject": "校验并直接交付四报告",
+      "description": "完成冻结生成器机器校验、数字一致性、原生公式/表格结构及外发版内容删减检查后，一次给出四个任务附件链接和简短结果摘要；无需报告角色分层、人工签核或外发批准。完整／外发仅为内容版本，不是访问角色。新环境先完成冻结样例视觉验收，逐案质量失败可修复两轮，仍失败如实返回错误。"
+    }
+  ],
+  "gates": [
+    {
+      "policy": "single-home-four-reports.quality",
+      "gate": "city-release-binding",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-four-reports.quality",
+      "gate": "four-original-docx",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-four-reports.quality",
+      "gate": "deterministic-numbers",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-four-reports.quality",
+      "gate": "frozen-layout",
+      "appliesTo": [
+        "deliverable"
+      ]
+    },
+    {
+      "policy": "single-home-four-reports.quality",
+      "gate": "external-content",
+      "appliesTo": [
+        "deliverable"
+      ]
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "deliverable",
+      "outputTemplate": "single-home-four-reports.output",
+      "fromTasks": [
+        "t5"
+      ],
+      "renderMode": "final"
+    }
+  ],
+  "scenarioId": "single-home-four-reports",
+  "leadExpert": "bk-hva-007"
+}

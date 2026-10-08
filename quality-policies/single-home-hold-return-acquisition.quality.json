@@ -1,6 +1,6 @@
 {
   "id": "single-home-hold-return-acquisition.quality",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "gates": [
     {
@@ -207,7 +207,7 @@
       "appliesTo": [
         "deliverable"
       ],
-      "severity": "soft",
+      "severity": "hard",
       "phase": "semantic",
       "config": {
         "rules": [
@@ -218,5 +218,5 @@
   ],
   "maxRepairRounds": 2,
   "appliesToScenario": "single-home-hold-return-acquisition",
-  "notes": "任一硬门不通过时不得形成对外定稿；修复轮次耗尽后转人工处理，并建议在目标平台保存哈希、抽样截图和 GATE 文件。"
+  "notes": "任一硬门不通过时返回质量失败；修复轮次耗尽后返回可诊断错误，并建议在目标平台保存哈希、抽样截图和 GATE 文件。"
 }
