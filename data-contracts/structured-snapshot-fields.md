@@ -10,9 +10,9 @@
 - `model_version`、`inference_id`；
 - `calculation_snapshot_id`、`rule_version`；
 - 结果、可比摘要、合理性、归因、警告和限制条件；
-- `generated_internal_review_draft`、`ready_for_human_review`、`approved_for_external_delivery` 或 `blocked`。
+- 任务状态 `queued/running/succeeded/failed/cancelled`、机器质量状态 `pending/passed/failed`、四报告文件清单及资源绑定。
 
-Agent 只能写入前两种非外发状态。`approved_for_external_delivery` 只能由授权人工流程写入。
+状态来自实际服务回执。四份文件齐全且质量通过后直接交付全部附件，不要求人工批准或报告角色分层；旧审批字段不再作为阻断条件。
 
 ## 数值来源
 

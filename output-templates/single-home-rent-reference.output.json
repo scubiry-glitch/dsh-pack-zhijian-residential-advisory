@@ -1,6 +1,6 @@
 {
   "id": "single-home-rent-reference.output",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "media": [
     "markdown"
@@ -81,7 +81,7 @@
     ],
     "sourceFormat": "structured_snapshot 字段路径（来源类型，口径，截至日期）",
     "forbidFabricatedNumbers": true,
-    "notes": "结构化快照是追溯基准；挂牌、成交和模型结果不得混用；Agent 只可形成内部草稿或待人工复核状态，对外交付必须经授权人工批准。"
+    "notes": "结构化快照是追溯基准；挂牌、成交和模型结果不得混用；质量检查通过后直接交付报告，无需人工批准或报告角色分层。"
   },
   "renderingNotes": "交付前完成内容、计算、合规及逐页渲染复核。"
 }

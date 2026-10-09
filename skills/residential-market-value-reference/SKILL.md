@@ -1,7 +1,7 @@
 ---
 name: residential-market-value-reference
 description: '单套住宅市场价值参考测算工艺。用于交易可比查询、正式模型推理、同小区对比、预测合理性、价格归因和咨询报告证据组织；城市未覆盖、正式版本缺失或要求法定评估结论时不得生成正式结果。Triggers on "二手房价值", "成交价参考", "市场价值参考", "同小区价格对比".'
-version: 0.2.0
+version: 0.3.0
 user-invocable: true
 argument-hint: "[测算/复核] 单套住宅资料"
 license: 机构内部

@@ -1,43 +1,34 @@
-# 智见住宅咨询测算 Agent 包
+# 智见住宅估值与租金四报告领域包
 
-本包把房屋价值平台已核验的业务能力组织为三个面向用户的基础 Agent：单套住宅市场价值参考测算、住宅租金参考测算、持有收益与收购价测算。可比案例分析、同小区对比、价格合理性、归因解释和报告生成被纳入相应场景流程，不另设面向用户的 Agent。
+版本 **0.3.0**。住宅估值默认生成价格完整版、价格外发版、租金完整版、租金外发版四份 DOCX；质量检查通过后一次直接给出全部文件，不设置报告角色分层或人工批准环节。
 
-## 当前状态
+面向已接入的城市。福州提供冻结运行包及历史数据快照，作为稳定 Demo；其他城市绑定各自模型、快照与报告配置。没有城市覆盖时说明缺少的资源，不能套用福州模型。
 
-- 包版本：`0.2.0`
-- 提交状态：`candidate_for_zhijian_deployment`
-- 本地范围：静态结构、引用关系、合规边界及可复现打包可验证
-- 平台范围：Provider、Skill 和 Scenario 尚未注册，不能据此声明生产可用
-- 发布约束：完成智见平台验收、灰度、GATE 文件、匿名化样本和审批后，方可按正式状态管理
+## 使用入口
 
-## 目录映射
+“住宅估值”“估值和租金报告”“四份报告”“福州估值”进入 `single-home-four-reports`。组合请求优先于单业务关键词；明确只要价格/租金时仍可使用原两个场景。持有收益/收购价保留独立场景，不计入四报告。
 
-- 交付源目录：`deliverables/zhijian-residential-advisory`
-- 目标平台领域包：`domain-packs/zhijian-residential-advisory`
-- Skill 分发副本：`skills/<skill-id>/SKILL.md`
-- 目标平台运行时权威入口：`knowledge/skills/<skill-id>/SKILL.md`
-- 专家知识说明：`knowledge/experts/<expert-id>/PROFILE-SOURCES.md`
+冻结生成器输出原始文件；Markdown 仅是简短摘要，不重排 DOCX。完整／外发是内容版本：外发版删减底稿等细节，四份均返回当前任务用户。数值来自模型和确定性代码，附数据有效月与咨询性质，不虚构专业签署。
 
-分发包中的 Skill 是提交副本；注册后应以目标平台 `knowledge/skills/` 下的内容为运行时权威版本。能力映射不代表 Provider 已在目标环境注册。
+## 安装与状态
 
-## 三个用户场景
+本包为 `candidate_for_zhijian_deployment`，含领域编排、能力契约、Skill、质量规则和本地校验工具。**更新 Git 不等于六项新能力已经在智见注册，也不包含私有运行程序与历史数据。**
 
-1. `single-home-market-value-reference`：市场价值参考测算、出售可比分析、同小区对比、合理性与归因解释。
-2. `single-home-rent-reference`：租金参考测算、租赁可比分析、同小区对比、合理性与归因解释。
-3. `single-home-hold-return-acquisition`：基于已验证价值、租金和确定性计算快照，解释持有收益及收购价情景参考线。
+- [智见接入步骤与反馈处理](docs/INTEGRATION.md)
+- [六项 Provider 契约](data-contracts/v2-provider-contract.md)
+- [能力与直接交付策略](data-contracts/v2-capabilities.json)
+- [福州私有 Demo 运行包校验引用](demo/fuzhou-runtime-reference.json)
+- [提交验收清单](SUBMISSION-CHECKLIST.md)
 
-## 使用边界
+领域包安装到 `domain-packs/zhijian-residential-advisory`。`skills/` 分发文件及 references 一起挂载到 `knowledge/skills/`，登记 skill-catalog；领域知识和 data-contracts 也须可检索。平台凭据、模型、历史逐笔数据不进入公共 Git。训练保留本地。
 
-本包生成咨询成果，不自动生成法定或制度要求的资产评估报告、房地产估价报告。AI 不自行计算估值、租金、NOI、DCF、IRR 或敏感性结果；所有数值均须来自结构化数据、确定性代码或已绑定的模型推理结果。
+## 本地验证
 
-## 本地校验
+无需项目仓库之外的测试脚本，Python 3.11+：
 
-从项目根目录执行：
-
-```bash
-PYTHONPATH=. python -m pytest tests/agent_packs/test_zhijian_residential_advisory_pack.py -q
-python scripts/validate_zhijian_residential_advisory_pack.py
+```sh
+python3 -m unittest discover -s validation/tests -v
+python3 validation/check_pack.py
 ```
 
-本地校验通过仅表明候选包满足仓库内的静态约束，不等于目标平台验收完成，也不构成生产可用声明。
-
+修改后重建完整性清单：`python3 validation/check_pack.py --build`，再执行上述只读验证。四报告下载完整性校验：`python3 validation/validate_delivery.py manifest.json expected-current-task.json downloaded-files/`。清单校验不代替真实 DOCX 内容、数值或渲染验收。

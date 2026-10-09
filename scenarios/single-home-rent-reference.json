@@ -2,28 +2,119 @@
   "id": "single-home-rent-reference",
   "name": "住宅租金参考测算 Agent",
   "description": "以正式租赁数据、模型、租赁可比和归因证据生成住宅租金参考测算及咨询报告。",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "domain": "residential-realestate",
-  "intents": ["月租金", "单位租金", "出租定价", "住宅租金参考"],
-  "requiredCapabilities": ["residential.rent-reference", "residential.rent-comparable-review", "residential.evidence-audit", "residential.report-quality-review"],
-  "routingPolicy": {"candidateHints": ["bk-hva-003", "bk-hva-004", "bk-hva-006", "bk-hva-007"]},
+  "intents": [
+    "月租金",
+    "单位租金",
+    "出租定价",
+    "住宅租金参考"
+  ],
+  "requiredCapabilities": [
+    "residential.rent-reference",
+    "residential.rent-comparable-review",
+    "residential.evidence-audit",
+    "residential.report-quality-review"
+  ],
+  "routingPolicy": {
+    "candidateHints": [
+      "bk-hva-003",
+      "bk-hva-004",
+      "bk-hva-006",
+      "bk-hva-007"
+    ]
+  },
   "teamTemplate": "rent-reference-team",
   "outputTemplate": "single-home-rent-reference.output",
   "qualityPolicy": "single-home-rent-reference.quality",
-  "knowledgePolicy": {"required": ["zhijian-residential-advisory-knowledge"]},
-  "toolPolicy": {"allowed": ["expert_provider_call"]},
-  "experts": ["bk-hva-003", "bk-hva-004", "bk-hva-006", "bk-hva-007"],
+  "knowledgePolicy": {
+    "required": [
+      "zhijian-residential-advisory-knowledge"
+    ]
+  },
+  "toolPolicy": {
+    "allowed": [
+      "expert_provider_call"
+    ]
+  },
+  "experts": [
+    "bk-hva-003",
+    "bk-hva-004",
+    "bk-hva-006",
+    "bk-hva-007"
+  ],
   "tasks": [
-    {"subject": "标准化资料和租赁用途", "description": "动手前先完整阅读 knowledge/skills/residential-subject-intake/SKILL.md，区分核验事实、用户输入、结构化回填、假设和待补资料。", "expert": "bk-hva-003", "dependsOn": []},
-    {"subject": "覆盖与完整性检查", "description": "按 residential-subject-intake 规则解析地址，核验城市、住宅类型和必要字段覆盖。", "expert": "bk-hva-006", "dependsOn": [0]},
-    {"subject": "租赁可比查询", "description": "动手前先完整阅读 knowledge/skills/residential-rent-reference/SKILL.md，查询同区、同板块和同小区租赁可比，保留来源类型、原始值、单位值、入选和排除理由。", "expert": "bk-hva-004", "dependsOn": [1]},
-    {"subject": "正式租金模型推理", "description": "按 residential-rent-reference 规则调用已发布租金模型，保留 model_version 和 inference_id。", "expert": "bk-hva-003", "dependsOn": [1]},
-    {"subject": "合理性和归因", "description": "动手前先完整阅读 knowledge/skills/residential-rent-reference/SKILL.md，对比月租金、单位租金、同小区可比和模型预测，仅解释可用的本地归因。", "expert": "bk-hva-004", "dependsOn": [2, 3]},
-    {"subject": "证据链复核", "description": "核验 query_id、data_version、model_version、inference_id、来源类型、单位和标的一致性。", "expert": "bk-hva-006", "dependsOn": [2, 3, 4]},
-    {"subject": "生成结构化快照和咨询报告", "description": "动手前先完整阅读 knowledge/skills/residential-advisory-report-quality/SKILL.md，先保存追溯快照，再按输出模板生成租金咨询报告。", "expert": "bk-hva-003", "dependsOn": [5]},
-    {"subject": "质量门禁", "description": "按 residential-advisory-report-quality 规则执行数字、来源类型、单位、版本、措辞和渲染门禁。", "expert": "bk-hva-007", "dependsOn": [6]}
+    {
+      "subject": "标准化资料和租赁用途",
+      "description": "动手前先完整阅读 knowledge/skills/residential-subject-intake/SKILL.md，区分核验事实、用户输入、结构化回填、假设和待补资料。",
+      "expert": "bk-hva-003",
+      "dependsOn": []
+    },
+    {
+      "subject": "覆盖与完整性检查",
+      "description": "按 residential-subject-intake 规则解析地址，核验城市、住宅类型和必要字段覆盖。",
+      "expert": "bk-hva-006",
+      "dependsOn": [
+        0
+      ]
+    },
+    {
+      "subject": "租赁可比查询",
+      "description": "动手前先完整阅读 knowledge/skills/residential-rent-reference/SKILL.md，查询同区、同板块和同小区租赁可比，保留来源类型、原始值、单位值、入选和排除理由。",
+      "expert": "bk-hva-004",
+      "dependsOn": [
+        1
+      ]
+    },
+    {
+      "subject": "正式租金模型推理",
+      "description": "按 residential-rent-reference 规则调用已发布租金模型，保留 model_version 和 inference_id。",
+      "expert": "bk-hva-003",
+      "dependsOn": [
+        1
+      ]
+    },
+    {
+      "subject": "合理性和归因",
+      "description": "动手前先完整阅读 knowledge/skills/residential-rent-reference/SKILL.md，对比月租金、单位租金、同小区可比和模型预测，仅解释可用的本地归因。",
+      "expert": "bk-hva-004",
+      "dependsOn": [
+        2,
+        3
+      ]
+    },
+    {
+      "subject": "证据链复核",
+      "description": "核验 query_id、data_version、model_version、inference_id、来源类型、单位和标的一致性。",
+      "expert": "bk-hva-006",
+      "dependsOn": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "subject": "生成结构化快照和咨询报告",
+      "description": "动手前先完整阅读 knowledge/skills/residential-advisory-report-quality/SKILL.md，先保存追溯快照，再按输出模板生成租金咨询报告。",
+      "expert": "bk-hva-003",
+      "dependsOn": [
+        5
+      ]
+    },
+    {
+      "subject": "质量门禁",
+      "description": "按 residential-advisory-report-quality 规则执行数字、来源类型、单位、版本、措辞和渲染门禁。",
+      "expert": "bk-hva-007",
+      "dependsOn": [
+        6
+      ]
+    }
   ],
   "deliverable": "结构化住宅租金参考快照与住宅租金参考测算咨询报告",
-  "skill": {"id": "residential-rent-reference", "purpose": "执行住宅租金参考测算融合工艺", "appliesToTaskIndex": 4}
+  "skill": {
+    "id": "residential-rent-reference",
+    "purpose": "执行住宅租金参考测算融合工艺",
+    "appliesToTaskIndex": 4
+  }
 }

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "role": "stable_demo",
+  "city_code": "350100",
+  "runtime_archive": "fz_single_property_toolkit_20261008_v2.zip",
+  "size_bytes": 33103905,
+  "sha256": "caef8e4ad57a013502fd128654967c9664f10eb1ccc87697c4d9992b94a4642d",
+  "distribution": "private_sidecar_not_in_public_git",
+  "stage": "demo",
+  "active_pointer_changed_by_export": false,
+  "businesses": [
+    "price",
+    "rent"
+  ],
+  "reports": [
+    "price_full",
+    "price_external",
+    "rent_full",
+    "rent_external"
+  ],
+  "price_effective_month": "2026-06",
+  "rent_effective_month": "2026-07",
+  "runtime_validation": "local frozen-package validation exists; target-container acceptance pending",
+  "known_limitation": "冻结v2尚未包含本地后续修复的7月可比索引问题；黄金Demo与任意新案验收分开。新案需回归并发布独立补丁版本，不能原地改写v2或沿用旧hash。"
+}

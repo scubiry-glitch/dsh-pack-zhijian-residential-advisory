@@ -1,0 +1,111 @@
+{
+  "id": "single-home-four-reports",
+  "name": "住宅价格与租金四报告",
+  "description": "通用城市入口；按已绑定城市模型及数据生成价格完整/外发、租金完整/外发四份原始 DOCX，福州为稳定 Demo。",
+  "version": "0.3.0",
+  "schemaVersion": 2,
+  "domain": "residential-realestate",
+  "intents": [
+    "住宅估值",
+    "估值报告",
+    "估值和租金报告",
+    "价格和租金报告",
+    "四份报告",
+    "四报告",
+    "福州估值"
+  ],
+  "requiredCapabilities": [
+    "residential.market-value-reference",
+    "residential.rent-reference",
+    "residential.evidence-audit",
+    "residential.report-quality-review"
+  ],
+  "routingPolicy": {
+    "candidateHints": [
+      "bk-hva-001",
+      "bk-hva-003",
+      "bk-hva-006",
+      "bk-hva-007"
+    ]
+  },
+  "teamTemplate": "four-reports-team",
+  "outputTemplate": "single-home-four-reports.output",
+  "qualityPolicy": "single-home-four-reports.quality",
+  "knowledgePolicy": {
+    "required": [
+      "zhijian-residential-advisory-knowledge"
+    ]
+  },
+  "toolPolicy": {
+    "allowed": [
+      "expert_provider_call"
+    ]
+  },
+  "experts": [
+    "bk-hva-001",
+    "bk-hva-003",
+    "bk-hva-006",
+    "bk-hva-007"
+  ],
+  "tasks": [
+    {
+      "subject": "标准化标的并绑定城市资源",
+      "expert": "bk-hva-006",
+      "dependsOn": [],
+      "description": "读取 residential-four-report-delivery Skill；校验业务必需字段并绑定 city_code、input_sha256、release_id 和价格/租金模型、特征、快照及模板哈希。城市未覆盖返回 unavailable；福州黄金案例标 demo，不作为当前市场新结论。"
+    },
+    {
+      "subject": "价格估值及交易证据",
+      "expert": "bk-hva-001",
+      "dependsOn": [
+        0
+      ],
+      "description": "按绑定城市资源执行确定性价格推理，取得价格快照及可比证据；数值不得由语言模型补算。"
+    },
+    {
+      "subject": "租金估值及租赁证据",
+      "expert": "bk-hva-003",
+      "dependsOn": [
+        0
+      ],
+      "description": "按同一标的及绑定城市资源执行确定性租金推理，取得租金快照；价格和租金有效月份分别记录。"
+    },
+    {
+      "subject": "提交冻结四报告生成",
+      "expert": "bk-hva-007",
+      "dependsOn": [
+        0,
+        1,
+        2
+      ],
+      "description": "用两份推理快照、同一 case_id/attempt_id/input_sha256/release_id 提交 business=both，roles 固定四类；idempotency_key 重试不变。异步返回 job_id；禁止 Markdown 重排或改写冻结模板。"
+    },
+    {
+      "subject": "等待并取回四份原始 DOCX",
+      "expert": "bk-hva-007",
+      "dependsOn": [
+        0,
+        3
+      ],
+      "description": "轮询当前 job_id；成功后获取四个文件引用并由下载网关取回原始字节。验证 role、case/attempt/job、大小、生成端与下载端 SHA256，保存为任务附件。不把 DOCX base64 放进 Provider JSON。失败或超时报告实际状态，不能伪装成功。"
+    },
+    {
+      "subject": "校验并直接交付四报告",
+      "expert": "bk-hva-007",
+      "dependsOn": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "description": "完成冻结生成器机器校验、数字一致性、原生公式/表格结构及外发版内容删减检查后，一次给出四个任务附件链接和简短结果摘要；无需报告角色分层、人工签核或外发批准。完整／外发仅为内容版本，不是访问角色。新环境先完成冻结样例视觉验收，逐案质量失败可修复两轮，仍失败如实返回错误。"
+    }
+  ],
+  "deliverable": "价格完整版、价格外发版、租金完整版、租金外发版四份 DOCX 原始附件及追溯摘要",
+  "skill": {
+    "id": "residential-four-report-delivery",
+    "purpose": "绑定城市资源并直接交付冻结四报告",
+    "appliesToTaskIndex": 0
+  }
+}

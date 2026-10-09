@@ -29,7 +29,18 @@
       "locator": "AGENTS.md",
       "authorizationStatus": "project_internal",
       "usage": "事实、计算、发布、报告与验收规则"
+    },
+    {
+      "id": "four-report-delivery-requirement-20261008",
+      "title": "用户确认的通用城市四报告与直接交付要求",
+      "authorizationStatus": "user_provided",
+      "usage": "取消报告角色分层及人工批准条件；福州为稳定Demo，私有资源不进公共Git。"
+    },
+    {
+      "id": "partner-v2-integration-feedback-20261008",
+      "title": "智见四报告生成器接入方案及平台回函",
+      "authorizationStatus": "user_provided_private_reference",
+      "usage": "采纳运行资源挂载、能力注册、原件交付及质量验收；修订项见docs/INTEGRATION.md；不公开原始回函。"
     }
   ]
 }
-

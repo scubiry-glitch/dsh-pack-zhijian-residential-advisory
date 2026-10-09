@@ -1,0 +1,77 @@
+{
+  "id": "single-home-four-reports.output",
+  "version": "0.3.0",
+  "schemaVersion": 2,
+  "media": [
+    "markdown",
+    "json"
+  ],
+  "sections": [
+    {
+      "id": "subject",
+      "required": true,
+      "fields": [
+        "case_id",
+        "city_code",
+        "as_of_date"
+      ]
+    },
+    {
+      "id": "result",
+      "required": true,
+      "fields": [
+        "price_result",
+        "rent_result",
+        "price_effective_month",
+        "rent_effective_month",
+        "stage"
+      ]
+    },
+    {
+      "id": "report_files",
+      "required": true,
+      "fields": [
+        "price_full",
+        "price_external",
+        "rent_full",
+        "rent_external"
+      ]
+    },
+    {
+      "id": "technical_refs",
+      "required": true,
+      "fields": [
+        "attempt_id",
+        "job_id",
+        "input_sha256",
+        "release_id",
+        "model_versions",
+        "snapshot_versions",
+        "template_version",
+        "generator_version"
+      ]
+    },
+    {
+      "id": "limitations",
+      "required": true,
+      "fields": [
+        "coverage",
+        "data_dates",
+        "consulting_nature"
+      ]
+    }
+  ],
+  "renderModes": {
+    "discussion": {
+      "anonymize": true
+    },
+    "final": {
+      "anonymize": false
+    }
+  },
+  "appliesToScenario": "single-home-four-reports",
+  "dataRules": {
+    "notes": "摘要以结构化结果为准；四份 DOCX 是任务附件，非 Markdown 渲染产物。不要求人工批准或报告角色授权。"
+  },
+  "renderingNotes": "media 为摘要及清单格式；不得据此将 DOCX 转为 Markdown 再重排。四附件链接必须全部展示。"
+}

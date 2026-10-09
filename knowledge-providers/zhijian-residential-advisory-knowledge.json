@@ -1,6 +1,6 @@
 {
   "id": "zhijian-residential-advisory-knowledge",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "kind": "files",
   "capabilities": [
@@ -16,6 +16,9 @@
     "experts/bk-hva-005",
     "experts/bk-hva-006",
     "experts/bk-hva-007",
-    "domain/reporting-boundaries"
+    "domain/reporting-boundaries",
+    "data-contracts",
+    "domain-knowledge",
+    "skills/residential-four-report-delivery"
   ]
 }

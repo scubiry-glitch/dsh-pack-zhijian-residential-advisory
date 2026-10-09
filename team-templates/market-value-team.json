@@ -1,6 +1,6 @@
 {
   "id": "market-value-team",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "schemaVersion": 2,
   "parameters": {
     "type": "object",
@@ -59,9 +59,7 @@
       "role": "bk-hva-001",
       "dependsOn": [],
       "inputs": [],
-      "allowedCapabilities": [
-        "residential.market-value-reference"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-market-value-reference.output",
       "retryPolicy": "quality-repair",
       "subject": "标准化资料和测算目的",
@@ -80,7 +78,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.evidence-audit"
+        "housevalue.realestate.address.resolve"
       ],
       "outputSchema": "single-home-market-value-reference.output",
       "retryPolicy": "quality-repair",
@@ -100,7 +98,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.sale-comparable-review"
+        "housevalue.realestate.sale-comparables.query"
       ],
       "outputSchema": "single-home-market-value-reference.output",
       "retryPolicy": "quality-repair",
@@ -120,7 +118,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.market-value-reference"
+        "housevalue.realestate.valuation.infer"
       ],
       "outputSchema": "single-home-market-value-reference.output",
       "retryPolicy": "quality-repair",
@@ -144,9 +142,7 @@
           "ref": "t3"
         }
       ],
-      "allowedCapabilities": [
-        "residential.sale-comparable-review"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-market-value-reference.output",
       "retryPolicy": "quality-repair",
       "subject": "合理性和归因",
@@ -174,9 +170,7 @@
           "ref": "t4"
         }
       ],
-      "allowedCapabilities": [
-        "residential.evidence-audit"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-market-value-reference.output",
       "retryPolicy": "quality-repair",
       "subject": "证据链复核",
@@ -195,7 +189,7 @@
         }
       ],
       "allowedCapabilities": [
-        "residential.market-value-reference"
+        "housevalue.realestate.report.generate"
       ],
       "outputSchema": "single-home-market-value-reference.output",
       "retryPolicy": "quality-repair",
@@ -214,9 +208,7 @@
           "ref": "t6"
         }
       ],
-      "allowedCapabilities": [
-        "residential.report-quality-review"
-      ],
+      "allowedCapabilities": [],
       "outputSchema": "single-home-market-value-reference.output",
       "retryPolicy": "quality-repair",
       "subject": "质量门禁",
